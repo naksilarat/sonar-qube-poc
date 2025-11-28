@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:only": "playwright test",
+    "coverage": "c8 --reporter=lcov npm run test",
+    "sonar": "npm test && npx sonar-scanner",
+    "sonar:coverage": "npm run coverage && npx sonar-scanner"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/naksilarat/sonar-qube-poc.git"
@@ -16,7 +22,11 @@
   },
   "homepage": "https://github.com/naksilarat/sonar-qube-poc#readme",
   "devDependencies": {
+    "@bdellegrazie/playwright-sonar-reporter": "^0.4.0",
     "@playwright/test": "^1.57.0",
     "@types/node": "^24.10.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }
