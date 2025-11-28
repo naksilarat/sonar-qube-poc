@@ -5,4 +5,17 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/playwright/.auth/
+playwright/.auth/
+
+# Generated test and coverage reports
+coverage/
+coverage/tmp/
+coverage/lcov-report/
+lcov.info
+
+# Sonar scanner output
+.scannerwork/
+
+# Editor/OS
+.vscode/
+.DS_Store
