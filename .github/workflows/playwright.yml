@@ -28,7 +28,9 @@ jobs:
         run: npm run coverage
 
       - name: SonarQube Scan
-        uses: sonarqube-quality-gate-action@master
+        run: |
+          npm install -g sonarqube-scanner
+          sonar-scanner
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
