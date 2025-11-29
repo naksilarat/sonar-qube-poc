@@ -1,9 +1,11 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    # Run when commits are pushed to the main branch
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    # Run for PRs that target the main branch
+    branches: [ main ]
 jobs:
   test:
     timeout-minutes: 60
