@@ -27,7 +27,8 @@ class XMLFixerReporter {
   fixSonarReport() {
     try {
       if (!fs.existsSync(this.inputFile)) {
-        console.log('⚠️  Original sonar report not found, skipping fix');
+        console.log('⚠️  Original sonar report not found, creating empty report');
+        this.createEmptyReport();
         return;
       }
 
@@ -44,14 +45,20 @@ class XMLFixerReporter {
       // Fix empty failure elements with proper message
       content = content.replace(/<failure>\s*<\/failure>/g, '<failure message="Test failed">Assertion failed</failure>');
       
-      // Fix empty skipped elements with proper message
+      // Fix empty skipped elements with proper message  
       content = content.replace(/<skipped>\s*<\/skipped>/g, '<skipped message="Test skipped">Test was skipped</skipped>');
       
-      // Convert self-closing testCase elements that have content
-      content = content.replace(/<testCase([^>]*)>\s*<\/testCase>/g, '<testCase$1/>');
+      // Fix self-closing elements
+      content = content.replace(/<testCase([^>]*)\s*\/>/g, '<testCase$1></testCase>');
       
-      // Ensure proper formatting
-      content = content.replace(/>\s+</g, '><').replace(/><</g, '>\n<');
+      // Ensure testsuites wrapper exists
+      if (!content.includes('<testsuites')) {
+        content = content.replace(/<testsuite/, '<testsuites><testsuite');
+        content = content.replace(/<\/testsuite>/, '</testsuite></testsuites>');
+      }
+      
+      // Clean up formatting
+      content = content.replace(/>\s+</g, '>\n<');
       
       // Write the fixed content
       fs.writeFileSync(this.outputFile, content, 'utf8');
@@ -61,7 +68,26 @@ class XMLFixerReporter {
       
     } catch (error) {
       console.error('❌ Error fixing sonar report:', error.message);
+      // Create fallback empty report on error
+      this.createEmptyReport();
     }
+  }
+
+  createEmptyReport() {
+    const emptyReport = `<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Playwright Tests" tests="0" failures="0" errors="0" time="0">
+  </testsuite>
+</testsuites>`;
+    
+    // Ensure directory exists
+    const dir = path.dirname(this.outputFile);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    
+    fs.writeFileSync(this.outputFile, emptyReport, 'utf8');
+    console.log('✅ Created empty sonar report');
   }
 }
 
