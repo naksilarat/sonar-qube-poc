@@ -41,6 +41,12 @@ jobs:
             echo "sonar-test-report.xml not found"
           fi
 
+      - name: Set up JDK 17 for SonarScanner
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
       - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
