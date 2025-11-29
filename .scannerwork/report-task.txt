@@ -3,5 +3,5 @@ projectKey=poc-sonar-qube
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.76937
 dashboardUrl=https://sonarcloud.io/dashboard?id=poc-sonar-qube
-ceTaskId=AZrPc4GBK2fPoG0ozBS1
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZrPc4GBK2fPoG0ozBS1
+ceTaskId=AZrPeGCBKxlMbhBClM3S
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZrPeGCBKxlMbhBClM3S

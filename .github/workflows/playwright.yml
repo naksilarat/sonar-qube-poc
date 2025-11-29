@@ -54,6 +54,17 @@ jobs:
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
         run: |
+          echo "--- Java details before running SonarScanner ---"
+          echo "JAVA_HOME=$JAVA_HOME"
+          echo "which java: $(which java || true)"
+          java -version || true
+
+          # ensure the JDK we set with setup-java is used by prepending JAVA_HOME/bin
+          export PATH="$JAVA_HOME/bin:$PATH"
+          echo "--- Java details after prepending JAVA_HOME/bin to PATH ---"
+          echo "which java: $(which java || true)"
+          java -version || true
+
           # install sonar-scanner (global) and run with proper authentication and test report path
           npm install -g sonarqube-scanner@^2.8.0 || true
           sonar-scanner \
