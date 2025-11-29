@@ -6,7 +6,7 @@
   "scripts": {
     "test": "playwright test",
     "test:only": "playwright test",
-    "coverage": "playwright test --reporter=html,line",
+    "coverage": "playwright test",
     "sonar": "npm test && npx sonar-scanner",
     "sonar:coverage": "npm run coverage && npx sonar-scanner"
   },

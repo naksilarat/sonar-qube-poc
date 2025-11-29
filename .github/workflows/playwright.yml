@@ -24,23 +24,45 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run tests with coverage
+      - name: Run tests (coverage + sonar reporter)
         run: npm run coverage
         continue-on-error: true
 
-      - name: SonarQube Scan
+      - name: Show Sonar test report (debug)
+        if: always()
         run: |
-          npm install -g sonarqube-scanner
-          sonar-scanner
+          echo "Looking for sonar report files..."
+          ls -la test-results || true
+          if [ -f test-results/sonar-test-report.xml ]; then
+            echo "================ SONAR TEST REPORT =========="
+            sed -n '1,200p' test-results/sonar-test-report.xml || true
+            echo "============================================"
+          else
+            echo "sonar-test-report.xml not found"
+          fi
+
+      - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+        run: |
+          # install sonar-scanner (global) and run with proper authentication and test report path
+          npm install -g sonarqube-scanner@^2.8.0 || true
+          sonar-scanner \
+            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.organization=$SONAR_ORGANIZATION \
+            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+            -Dsonar.testExecutionReportPaths=test-results/sonar-test-report.xml
 
-          with:
-          args: >
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} 
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          continue-on-error: false
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sonar-test-report
+          path: test-results/sonar-test-report.xml
+          retention-days: 30
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
