@@ -1,0 +1,10 @@
+{
+    "errors" : {
+        "unauthorized" : 
+        {
+            "code": "invalid_credentials",
+            "type": "authentication_error",
+            "message": "Invalid username or password"
+        }
+    }
+}
