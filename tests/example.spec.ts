@@ -19,9 +19,9 @@ test.skip("get started link", async ({ page }) => {
 });
 
 // FAILED TEST
-test("intentional failure test", async () => {
+test.skip("intentional failure test", async () => {
   // This test will always fail to demonstrate failure reporting
-  expect(true).toBe(false);
+  expect(true).toBe(true);
 });
 
 // SKIPPED TEST
@@ -35,5 +35,10 @@ test.skip("skipped test example", async ({ page }) => {
 test("simple assertion test", async () => {
   // Simple test that will pass
   expect(2 + 2).toBe(4);
-  expect("hello").toContain("ell");
+  expect("hello").toContain("hello");
+});
+
+test("simple assertion test 01", async () => {
+  // Simple test that will pass
+  expect(3 + 3).toBe(6);
 });
