@@ -28,7 +28,9 @@ jobs:
       run: npm run coverage
       
     - name: SonarQube Scan
-      uses: sonarqube-quality-gate-action@master
+      # Use the full owner/repo@ref format. Replace 'sonarsource/sonarqube-quality-gate-action@master'
+      # with the exact action you want to use if different.
+      uses: sonarsource/sonarqube-quality-gate-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
