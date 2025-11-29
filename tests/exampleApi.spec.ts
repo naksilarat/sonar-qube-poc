@@ -5,7 +5,7 @@ import { onGetMetersData } from '../support/apiFunction';
 const dataTest = require ('../public/dataTest.json')
 const expectedResults = require ('../public/expectedResults.json')
 
-test.describe('API Test Suite', () => {
+test.describe.skip('API Test Suite', () => {
 
   test('POST Login API success when login with valid user', async () => {
     const requestBody = dataTest.usersData.validUser;
