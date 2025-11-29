@@ -4,7 +4,7 @@ on:
   # branch filters and allow manual runs via workflow_dispatch.
   push:
     # Run when commits are pushed to the main branch
-    branches: [main, '**']
+    branches: [main]
   pull_request:
     # Run for PRs that target the main branch
     branches: [main]
