@@ -3,5 +3,5 @@ projectKey=poc-sonar-qube_solar-billing-poc-sonar-qube
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.76937
 dashboardUrl=https://sonarcloud.io/dashboard?id=poc-sonar-qube_solar-billing-poc-sonar-qube
-ceTaskId=AZrL08PG5wGuruY-JYcN
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZrL08PG5wGuruY-JYcN
+ceTaskId=AZrO8g0yWOPApFc2_IbU
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZrO8g0yWOPApFc2_IbU
