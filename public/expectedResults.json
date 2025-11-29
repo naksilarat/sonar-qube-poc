@@ -6,5 +6,10 @@
             "type": "authentication_error",
             "message": "Invalid username or password"
         }
+    },
+    "invalidUser" :
+    {
+        "username": "invalidUser",
+        "password": "wrongPassword"
     }
 }
