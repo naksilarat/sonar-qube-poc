@@ -1,11 +1,15 @@
 name: Playwright Tests
 on:
+  # Use explicit mapping form for events so we can also include options like
+  # branch filters and allow manual runs via workflow_dispatch.
   push:
     # Run when commits are pushed to the main branch
     branches: [ main ]
   pull_request:
     # Run for PRs that target the main branch
     branches: [ main ]
+  # Allow manual runs from the GitHub UI (useful for debugging / reruns)
+  workflow_dispatch: {}
 jobs:
   test:
     timeout-minutes: 60
