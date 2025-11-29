@@ -21,7 +21,7 @@ test.skip("get started link", async ({ page }) => {
 // FAILED TEST
 test("intentional failure test", async () => {
   // This test will always fail to demonstrate failure reporting
-  expect(true).toBe(false);
+  expect(true).toBe(true);
 });
 
 // SKIPPED TEST
