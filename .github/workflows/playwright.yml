@@ -47,32 +47,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: SonarQube Scan
+      - name: SonarCloud scan (official action)
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          # pass organization & token from repo secrets
+          organization: ${{ secrets.SONAR_ORGANIZATION }}
+          token: ${{ secrets.SONAR_TOKEN }}
+          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          # keep sonar-host if you use a custom instance (not needed for sonarcloud.io)
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-        run: |
-          echo "--- Java details before running SonarScanner ---"
-          echo "JAVA_HOME=$JAVA_HOME"
-          echo "which java: $(which java || true)"
-          java -version || true
-
-          # ensure the JDK we set with setup-java is used by prepending JAVA_HOME/bin
-          export PATH="$JAVA_HOME/bin:$PATH"
-          echo "--- Java details after prepending JAVA_HOME/bin to PATH ---"
-          echo "which java: $(which java || true)"
-          java -version || true
-
-          # install sonar-scanner (global) and run with proper authentication and test report path
-          npm install -g sonarqube-scanner@^2.8.0 || true
-          sonar-scanner \
-            -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.host.url=$SONAR_HOST_URL \
-            -Dsonar.organization=$SONAR_ORGANIZATION \
-            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-            -Dsonar.testExecutionReportPaths=test-results/sonar-test-report.xml
 
       - uses: actions/upload-artifact@v4
         if: always()
