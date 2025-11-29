@@ -1,7 +1,7 @@
 organization=poc-sonar-qube
-projectKey=poc-sonar-qube_sonar-qube-poc
+projectKey=poc-sonar-qube
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.76937
-dashboardUrl=https://sonarcloud.io/dashboard?id=poc-sonar-qube_sonar-qube-poc
-ceTaskId=AZrPL5mIKxlMbhBClMmX
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZrPL5mIKxlMbhBClMmX
+dashboardUrl=https://sonarcloud.io/dashboard?id=poc-sonar-qube
+ceTaskId=AZrPO94IHW7NZSeFNvpq
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZrPO94IHW7NZSeFNvpq
