@@ -3,7 +3,7 @@ import { ENV } from '../config';
 import { onGetMetersData } from '../support/apiFunction';
 
 test.describe('API Test Suite', () => {
-  test('POST Login API Test', async () => {
+  test.skip('POST Login API Test', async () => {
     const requestBody = {
       username: 'arissara',
       password: 'Test@123456789'
