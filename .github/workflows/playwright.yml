@@ -50,13 +50,9 @@ jobs:
       - name: SonarCloud scan (official action)
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          # pass organization & token from repo secrets
           organization: ${{ secrets.SONAR_ORGANIZATION }}
           token: ${{ secrets.SONAR_TOKEN }}
           projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
-        env:
-          # keep sonar-host if you use a custom instance (not needed for sonarcloud.io)
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       - uses: actions/upload-artifact@v4
         if: always()
