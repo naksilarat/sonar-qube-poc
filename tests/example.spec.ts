@@ -37,3 +37,8 @@ test("simple assertion test", async () => {
   expect(2 + 2).toBe(4);
   expect("hello").toContain("hello");
 });
+
+test("simple assertion test 01", async () => {
+  // Simple test that will pass
+  expect(3 + 3).toBe(6);
+});
