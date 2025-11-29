@@ -6,7 +6,7 @@
   "scripts": {
     "test": "playwright test",
     "test:only": "playwright test",
-    "coverage": "c8 --reporter=lcov npm run test",
+    "coverage": "playwright test --reporter=html,line",
     "sonar": "npm test && npx sonar-scanner",
     "sonar:coverage": "npm run coverage && npx sonar-scanner"
   },
@@ -24,7 +24,8 @@
   "devDependencies": {
     "@bdellegrazie/playwright-sonar-reporter": "^0.4.0",
     "@playwright/test": "^1.57.0",
-    "@types/node": "^24.10.1"
+    "@types/node": "^24.10.1",
+    "c8": "^10.1.2"
   },
   "dependencies": {
     "dotenv": "^17.2.3"
