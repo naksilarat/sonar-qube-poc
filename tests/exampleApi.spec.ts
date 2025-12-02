@@ -8,9 +8,10 @@ const expectedResults = require ('../public/expectedResults.json')
 test.describe('API Test Suite', () => {
 
   test('POST Login API success when login with valid user', async () => {
-    const requestBody = dataTest.usersData.validUser;
-    console.log('Request Body:', requestBody);
+    const requestBody = dataTest.usersData.validUser.correctly;
+    console.log('Response Body:', requestBody);
     const response = await onGetMetersData.callPostLogin(ENV.LOGIN_PATH, requestBody);
+    console.log('Response Body:', response.body);
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('access_token');
   });
