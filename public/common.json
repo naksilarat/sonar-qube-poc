@@ -10,16 +10,5 @@
             "username": "invalidUser",
             "password": "wrongPassword"
         }
-    },
-    "validUser" :
-    {
-        "username": "arissara",
-        "password": "Test@123456789"
-    },
-    "invalidUser" :
-    {
-        "username": "invalidUser",
-        "password": "wrongPassword"
     }
-
 }
